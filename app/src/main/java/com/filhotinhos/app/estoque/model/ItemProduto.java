@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +22,9 @@ public class ItemProduto {
     private Produto produto;
     private double preco;
     private LocalDateTime dataCadastro;
+    
     @ManyToOne
+    @JoinColumn(name = "movimentacao_estoque_id")
     private MovimentacaoEstoque movimentacaoEstoque;
 
 }

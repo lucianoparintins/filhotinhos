@@ -18,7 +18,10 @@ public class MovimentacaoEstoque {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dataCadastro;
-    @OneToMany
+    
+    @OneToMany(mappedBy = "movimentacaoEstoque")
     private List<ItemProduto> itensProduto;
+
+    private TipoMovimentacao tipoMovimentacao;
 
 }
