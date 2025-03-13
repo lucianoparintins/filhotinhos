@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.filhotinhos.app.estoque.model.Produto;
 import com.filhotinhos.app.estoque.repository.ProdutoRepository;
-import com.filhotinhos.exception.ResourceNotFoundException;
+import com.filhotinhos.app.exception.ResourceNotFoundException;
 
 @Service
 public class ProdutoService {
