@@ -20,5 +20,6 @@ public class Produto {
     private String nome;
     private String descricao;
     private LocalDateTime dataCadastro;
- 
+    
+    private int quantidadeEstoque; // Novo campo para quantidade em estoque
 }

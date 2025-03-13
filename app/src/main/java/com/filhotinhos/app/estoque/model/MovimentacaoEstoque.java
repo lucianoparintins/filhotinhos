@@ -23,5 +23,6 @@ public class MovimentacaoEstoque {
     private List<ItemProduto> itensProduto;
 
     private TipoMovimentacao tipoMovimentacao;
-
+    
+    private int quantidade; // Novo campo para quantidade de itens movimentados
 }

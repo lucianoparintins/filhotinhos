@@ -26,5 +26,6 @@ public class ItemProduto {
     @ManyToOne
     @JoinColumn(name = "movimentacao_estoque_id")
     private MovimentacaoEstoque movimentacaoEstoque;
-
+    
+    private int quantidade; // Novo campo para quantidade de itens
 }
