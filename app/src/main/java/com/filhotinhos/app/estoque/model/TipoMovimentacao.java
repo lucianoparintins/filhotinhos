@@ -1,4 +1,4 @@
-package com.filhotinhos.estoque.model;
+package com.filhotinhos.app.estoque.model;
 
 public enum TipoMovimentacao {
     ENTRADA,

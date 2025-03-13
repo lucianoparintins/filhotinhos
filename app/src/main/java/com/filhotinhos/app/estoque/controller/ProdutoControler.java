@@ -1,4 +1,4 @@
-package com.filhotinhos.estoque.controller;
+package com.filhotinhos.app.estoque.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.filhotinhos.estoque.model.Produto;
-import com.filhotinhos.estoque.service.ProdutoService;
+import com.filhotinhos.app.estoque.model.Produto;
+import com.filhotinhos.app.estoque.service.ProdutoService;
 
 @RestController
 @RequestMapping("/api/produtos")

@@ -1,11 +1,12 @@
-package com.filhotinhos.estoque.service;
+package com.filhotinhos.app.estoque.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.filhotinhos.estoque.model.Produto;
-import com.filhotinhos.estoque.repository.ProdutoRepository;
+
+import com.filhotinhos.app.estoque.model.Produto;
+import com.filhotinhos.app.estoque.repository.ProdutoRepository;
 import com.filhotinhos.exception.ResourceNotFoundException;
 
 @Service

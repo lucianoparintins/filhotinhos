@@ -1,8 +1,8 @@
-package com.filhotinhos.estoque.repository;
+package com.filhotinhos.app.estoque.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.filhotinhos.estoque.model.Produto;
+import com.filhotinhos.app.estoque.model.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto,Long> {
     
