@@ -24,6 +24,7 @@ public class EstoqueService {
         movimentacaoEstoque.setDataCadastro(LocalDateTime.now());
         movimentacaoEstoque.setTipoMovimentacao(TipoMovimentacao.ENTRADA);
         movimentacaoEstoque.setQuantidade(itensProdutos.size());
+        movimentacaoEstoque.setValorTotal(valorTotal(itensProdutos));
 
         return movimentacaoEstoqueRepository.save(movimentacaoEstoque);
     }
@@ -34,8 +35,17 @@ public class EstoqueService {
         movimentacaoEstoque.setDataCadastro(LocalDateTime.now());
         movimentacaoEstoque.setTipoMovimentacao(TipoMovimentacao.SAIDA);
         movimentacaoEstoque.setQuantidade(itensProdutos.size());
+        movimentacaoEstoque.setValorTotal(valorTotal(itensProdutos));
 
         return movimentacaoEstoqueRepository.save(movimentacaoEstoque);
+    }
+
+    private double valorTotal(List<ItemProduto> itensProdutos){
+        double valorTotal = 0;
+        for(ItemProduto itemProduto : itensProdutos){
+            valorTotal += itemProduto.getPreco() ;
+        }
+        return valorTotal;
     }
     
 }
