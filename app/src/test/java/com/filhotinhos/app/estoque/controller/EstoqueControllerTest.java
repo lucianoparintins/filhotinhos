@@ -27,6 +27,9 @@ import com.filhotinhos.app.estoque.model.ItemProduto;
 import com.filhotinhos.app.estoque.model.MovimentacaoEstoque;
 import com.filhotinhos.app.estoque.model.Produto;
 import com.filhotinhos.app.estoque.model.TipoMovimentacao;
+import com.filhotinhos.app.estoque.repository.ItemProdutoRepository;
+import com.filhotinhos.app.estoque.repository.MovimentacaoEstoqueRepository;
+import com.filhotinhos.app.estoque.repository.ProdutoRepository;
 import com.filhotinhos.app.estoque.service.EstoqueService;
 import com.filhotinhos.app.estoque.service.ProdutoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,6 +50,15 @@ public class EstoqueControllerTest {
     @InjectMocks
     private EstoqueController estoqueController;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private MovimentacaoEstoqueRepository movimentacaoEstoqueRepository;
+
+    @Autowired
+    private ItemProdutoRepository itemProdutoRepository;
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
@@ -57,6 +69,9 @@ public class EstoqueControllerTest {
     }
 
     private void resetDatabase() {
+        produtoRepository.deleteAll();
+        movimentacaoEstoqueRepository.deleteAll();
+        itemProdutoRepository.deleteAll();
     }
 
     @Test
@@ -109,17 +124,40 @@ public class EstoqueControllerTest {
 
     @Test
     public void testRetirar() throws Exception {
-        ItemProduto itemProduto = new ItemProduto();
-        // ...configure itemProduto...
+        Produto produto = new Produto();
+        produto.setNome("Camiseta");
+        produto.setDescricao("Camiseta branca");
+        produto.setDataCadastro(null);
+        
+        when(produtoService.salvar(produto)).thenReturn(produto);
+
+        List<ItemProduto> itens = new ArrayList<>();
+
+        ItemProduto itemProduto1 = new ItemProduto();
+        itemProduto1.setDataCadastro(null);
+        itemProduto1.setProduto(produto);
+        itemProduto1.setPreco(10.0);
+        itens.add(itemProduto1);
+
+        ItemProduto itemProduto2= new ItemProduto();
+        itemProduto2.setDataCadastro(null);
+        itemProduto2.setProduto(produto);
+        itemProduto2.setPreco(10.0);
+        itens.add(itemProduto2);
+        
 
         MovimentacaoEstoque movimentacaoEstoque = new MovimentacaoEstoque();
-        // ...configure movimentacaoEstoque...
+        movimentacaoEstoque.setDataCadastro(null);
+        movimentacaoEstoque.setItensProduto(itens);
+        movimentacaoEstoque.setTipoMovimentacao(TipoMovimentacao.ENTRADA);
+        movimentacaoEstoque.setQuantidade(2);
+        movimentacaoEstoque.setValorTotal(20.0);
 
-        when(estoqueService.retirar(Arrays.asList(itemProduto))).thenReturn(movimentacaoEstoque);
+        when(estoqueService.retirar(itens)).thenReturn(movimentacaoEstoque);
 
         mockMvc.perform(post("/saida")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(Arrays.asList(itemProduto))))
+                .content(objectMapper.writeValueAsString(itens)))
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(movimentacaoEstoque)));
     }
