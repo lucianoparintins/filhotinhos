@@ -22,4 +22,21 @@ public class Produto {
     private LocalDateTime dataCadastro;
     
     private int quantidadeEstoque; // Novo campo para quantidade em estoque
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Produto produto = (Produto) obj;
+        return id != null ? id.equals(produto.id) : produto.id == null;
+    }
 }

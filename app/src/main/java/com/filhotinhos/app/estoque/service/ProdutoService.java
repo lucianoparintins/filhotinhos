@@ -15,24 +15,25 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public List<Produto> listar(){
-        return produtoRepository.findAll();
-    }
-
     public Produto buscarPorId(Long id) {
         return produtoRepository.findById(id).orElseThrow(
             () -> new ResourceNotFoundException("Produto Não Encontrado")
         );
     }
 
-    public Produto salvar(Produto produto){
-        return produtoRepository.save(produto);
+    public List<Produto> listarProdutosComQuantidadeEstoque() {
+        List<Produto> produtos = produtoRepository.findAll();
+        for (Produto produto : produtos) {
+            if (produto.getQuantidadeEstoque() <= 0) {
+                produtos.remove(produto);
+            }
+        }
+        return produtos;
     }
 
-    public void deletar(Long id){   
-        produtoRepository.deleteById(id);
+    @Autowired
+    public ProdutoRepository getProdutoRepository() {
+        return this.produtoRepository;
     }
 
-
-    
 }

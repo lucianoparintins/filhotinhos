@@ -24,7 +24,7 @@ public class ProdutoControler {
 
     @GetMapping
     public List<Produto> listarTodos(){
-        return produtoService.listar();
+        return produtoService.getProdutoRepository().findAll();
     }
 
     @GetMapping("/{id}")
@@ -34,11 +34,12 @@ public class ProdutoControler {
 
     @PostMapping
     public Produto salvar(@RequestBody Produto produto){
-        return produtoService.salvar(produto);
+        return produtoService.getProdutoRepository().save(produto);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
-        produtoService.deletar(id);
+        Produto produto = produtoService.buscarPorId(id);
+        produtoService.getProdutoRepository().delete(produto);
     }
 }
