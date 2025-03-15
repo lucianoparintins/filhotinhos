@@ -1,4 +1,4 @@
-package com.filhotinhos.app.estoque;
+package com.filhotinhos.app.estoque.controller;
 
 
 import org.junit.jupiter.api.BeforeEach;
