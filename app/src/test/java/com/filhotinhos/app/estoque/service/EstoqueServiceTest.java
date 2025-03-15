@@ -65,8 +65,10 @@ public class EstoqueServiceTest {
 
         produto = produtoService.getProdutoRepository().save(produto);
 
+        final Long idProduto = produto.getId();
+        
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            estoqueService.remover(1L, 15);
+            estoqueService.remover( idProduto, 15);
         });
 
         assertEquals("Quantidade em estoque insuficiente", exception.getMessage());
