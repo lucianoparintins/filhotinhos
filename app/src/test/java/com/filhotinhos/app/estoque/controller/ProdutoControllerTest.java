@@ -1,22 +1,24 @@
 package com.filhotinhos.app.estoque.controller;
 
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.filhotinhos.app.estoque.model.Produto;
 import com.filhotinhos.app.estoque.repository.ProdutoRepository;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ProdutoControllerTest {
 
     @Autowired
@@ -25,13 +27,8 @@ public class ProdutoControllerTest {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    @BeforeEach
-    public void setup() {
-        // Limpa o banco de dados antes de cada teste
-        produtoRepository.deleteAll();
-    }
-
     @Test
+    @Transactional
     public void testListarProdutos() throws Exception {
         // Insere um produto no banco de dados
         Produto produto = new Produto();
@@ -47,6 +44,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
+    @Transactional
     public void testCriarProduto() throws Exception {
         // Cria um JSON para o novo produto
         String produtoJson = "{ \"nome\": \"Calça Jeans\", \"descricao\": \"Calça azul\" }";
@@ -61,6 +59,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
+    @Transactional
     public void testBuscarProdutoPorId() throws Exception {
         // Insere um produto no banco de dados
         Produto produto = new Produto();
@@ -76,6 +75,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
+    @Transactional
     public void testDeletarProduto() throws Exception {
         // Insere um produto no banco de dados
         Produto produto = new Produto();

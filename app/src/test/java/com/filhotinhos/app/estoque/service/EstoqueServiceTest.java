@@ -9,11 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.filhotinhos.app.estoque.model.Produto;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 public class EstoqueServiceTest {
 
     @Autowired
@@ -29,8 +31,6 @@ public class EstoqueServiceTest {
 
     @Test
     public void testAdicionar() {
-
-    
         Produto produto = new Produto();
         produto.setQuantidadeEstoque(10);
 
@@ -41,7 +41,6 @@ public class EstoqueServiceTest {
         produto = produtoService.buscarPorId(produto.getId());
 
         assertEquals(15, produto.getQuantidadeEstoque());
-        
     }
 
     @Test
@@ -68,7 +67,7 @@ public class EstoqueServiceTest {
         final Long idProduto = produto.getId();
         
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            estoqueService.remover( idProduto, 15);
+            estoqueService.remover(idProduto, 15);
         });
 
         assertEquals("Quantidade em estoque insuficiente", exception.getMessage());
