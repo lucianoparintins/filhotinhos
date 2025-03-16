@@ -7,6 +7,7 @@ import { FluidModule } from 'primeng/fluid';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { ProdutoService } from './produto.service';
 
 @Component({
     selector: 'app-produto-cadastro',
@@ -44,7 +45,8 @@ export class ProdutoCadastro  {
     quantidade: string = '';
     preco: string = '';
 
-    constructor(private messageService: MessageService) { }
+    constructor(private messageService: MessageService, 
+        private produtoService: ProdutoService) { }
     
     salvarProduto(): void {
 
@@ -54,9 +56,31 @@ export class ProdutoCadastro  {
             console.log('Preço:', this.preco);
 
             if (this.validarFormulario()) {
+                this.enviarDadosParaApi();
+            }
+    }
+
+    enviarDadosParaApi(): void {
+        const produto = {
+            nome: this.nome,
+            descricao: this.descricao,
+            quantidade: this.quantidade,
+            preco: this.preco
+        };
+
+        this.produtoService.cadastrarProduto(produto).subscribe(
+            response => {
                 this.exibirMensagemSucesso();
                 this.limparFormulario();
+            },
+            error => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Erro ao cadastrar',
+                    detail: 'Ocorreu um erro ao tentar cadastrar o produto.'
+                });
             }
+        );
     }
 
     exibirMensagemSucesso(): void {
@@ -99,7 +123,7 @@ export class ProdutoCadastro  {
     }
 
     isPrecoValido(preco: string): boolean {
-        const regex = /^\d+(\,\d{1,2})?$/;
+        const regex = /^\d+(\.\d{1,2})?$/;
         return regex.test(preco);
     }
 
