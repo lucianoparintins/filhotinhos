@@ -22,6 +22,7 @@ public class Produto {
     private LocalDateTime dataCadastro;
     
     private int quantidadeEstoque; // Novo campo para quantidade em estoque
+    private double preco; // Novo campo para preço
 
     @Override
     public int hashCode() {
