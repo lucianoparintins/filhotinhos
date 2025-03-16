@@ -19,7 +19,7 @@ public class EstoqueService {
 
     public void adicionar(Long idProduto, Integer quantidade) {
         Produto produto = produtoService.buscarPorId(idProduto);
-        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + quantidade);
+        produto.setQuantidade(produto.getQuantidade() + quantidade);
 
         produtoRepository.save(produto);
     }
@@ -27,11 +27,11 @@ public class EstoqueService {
     public void remover(Long idProduto, Integer quantidade) {
         Produto produto = produtoService.buscarPorId(idProduto);
         
-        if (produto.getQuantidadeEstoque() < quantidade) {
+        if (produto.getQuantidade() < quantidade) {
             throw new RuntimeException("Quantidade em estoque insuficiente");
         }
 
-        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - quantidade);
+        produto.setQuantidade(produto.getQuantidade() - quantidade);
         
         produtoRepository.save(produto); 
     }

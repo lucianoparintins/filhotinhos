@@ -32,7 +32,7 @@ public class EstoqueServiceTest {
     @Test
     public void testAdicionar() {
         Produto produto = new Produto();
-        produto.setQuantidadeEstoque(10);
+        produto.setQuantidade(10);
 
         produto = produtoService.getProdutoRepository().save(produto);
 
@@ -40,13 +40,13 @@ public class EstoqueServiceTest {
 
         produto = produtoService.buscarPorId(produto.getId());
 
-        assertEquals(15, produto.getQuantidadeEstoque());
+        assertEquals(15, produto.getQuantidade());
     }
 
     @Test
     public void testRemover() {
         Produto produto = new Produto();
-        produto.setQuantidadeEstoque(10);
+        produto.setQuantidade(10);
 
         produto = produtoService.getProdutoRepository().save(produto);
 
@@ -54,13 +54,13 @@ public class EstoqueServiceTest {
 
         produto = produtoService.buscarPorId(produto.getId()); 
 
-        assertEquals(5, produto.getQuantidadeEstoque());
+        assertEquals(5, produto.getQuantidade());
     }
 
     @Test
     public void testRemoverQuantidadeInsuficiente() {
         Produto produto = new Produto();
-        produto.setQuantidadeEstoque(10);
+        produto.setQuantidade(10);
 
         produto = produtoService.getProdutoRepository().save(produto);
 
@@ -76,17 +76,17 @@ public class EstoqueServiceTest {
     @Test
     public void testListarProdutosEmEstoque() {
         Produto produto1 = new Produto();
-        produto1.setQuantidadeEstoque(10);
+        produto1.setQuantidade(10);
         produto1 = produtoService.getProdutoRepository().save(produto1);
 
         Produto produto2 = new Produto();
-        produto2.setQuantidadeEstoque(20);
+        produto2.setQuantidade(20);
         produto2 = produtoService.getProdutoRepository().save(produto2);
 
         List<Produto> result = estoqueService.listarProdutosEmEstoque();
 
         assertEquals(2, result.size());
-        assertEquals(10, result.get(0).getQuantidadeEstoque());
-        assertEquals(20, result.get(1).getQuantidadeEstoque());
+        assertEquals(10, result.get(0).getQuantidade());
+        assertEquals(20, result.get(1).getQuantidade());
     }
 }

@@ -1,5 +1,6 @@
 package com.filhotinhos.app.estoque.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class ProdutoControler {
 
     @PostMapping
     public Produto salvar(@RequestBody Produto produto){
+        produto.setDataCadastro(LocalDateTime.now());
         return produtoService.getProdutoRepository().save(produto);
     }
 

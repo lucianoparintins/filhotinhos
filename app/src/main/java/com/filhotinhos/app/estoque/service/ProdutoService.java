@@ -24,7 +24,7 @@ public class ProdutoService {
     public List<Produto> listarProdutosComQuantidadeEstoque() {
         List<Produto> produtos = produtoRepository.findAll();
         for (Produto produto : produtos) {
-            if (produto.getQuantidadeEstoque() <= 0) {
+            if (produto.getQuantidade() <= 0) {
                 produtos.remove(produto);
             }
         }

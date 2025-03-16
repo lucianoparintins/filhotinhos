@@ -21,7 +21,7 @@ public class Produto {
     private String descricao;
     private LocalDateTime dataCadastro;
     
-    private int quantidadeEstoque; // Novo campo para quantidade em estoque
+    private int quantidade; // Novo campo para quantidade em estoque
     private double preco; // Novo campo para preço
 
     @Override
