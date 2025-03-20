@@ -16,4 +16,9 @@ export class ProdutoService {
   cadastrarProduto(produto: any): Observable<any> {
     return this.http.post(this.apiUrl, produto);
   }
+
+  listarProduto(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
+
 }

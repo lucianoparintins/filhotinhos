@@ -27,7 +27,8 @@ export class AppMenu {
             {
                 label: 'Produto',
                 items: [
-                    { label: 'Cadastro', icon: 'pi pi-fw pi-plus', routerLink: ['/produto/cadastro'] }
+                    { label: 'Cadastro', icon: 'pi pi-fw pi-plus', routerLink: ['/produto/cadastro'] },
+                    { label: 'Atualizar Estoque', icon: 'pi pi-fw pi-pencil', routerLink: ['/produto/atualizar-estoque'] },
                 ]
             },
             {
