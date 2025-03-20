@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ToastModule } from "primeng/toast";
 import { MessageService } from "primeng/api";
 import { DataViewModule } from 'primeng/dataview';
-import { Button, ButtonModule } from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: "app-produto-atualiza-estoque",
@@ -19,33 +19,17 @@ import { Button, ButtonModule } from 'primeng/button';
                         <ng-template #list let-items>
                                 <div class="grid grid-cols-12 gap-4 grid-nogutter">
                                         <div class="col-span-12" *ngFor="let item of items; let first = first" class="col-span-12">
-                                                <div
-                                                class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
-                                                [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }"
-                                                >
+                                                <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" 
+                                                        [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }" >
                                                 
                                                         <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
 
                                                                 <div class="flex flex-row md:flex-col justify-between items-start gap-2">
-                                                                                <div>
-                                                                                        <div class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2">{{ item.nome }}</div>
-                                                                                </div>
-                                                                        <div class="bg-surface-100 dark:bg-surface-700 p-1" style="border-radius: 30px">
-                                                                                <div
-                                                                                class="bg-surface-0 dark:bg-surface-900 flex items-center gap-2 justify-center py-1 px-2"
-                                                                                style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)"
-                                                                                >
-                                                                                        <span class="text-surface-900 dark:text-surface-0 font-medium text-sm">{{ item.quantidade}}</span>
-                                                                                        <i class="pi pi-star-fill text-yellow-500"></i>
-                                                                                </div>
-                                                                        </div>
+                                                                        <div class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2">{{ item.nome }}</div>
                                                                 </div>
 
                                                                 <div class="flex flex-col md:items-end gap-8">
-                                                                        <span class="text-xl font-semibold text-surface-900 dark:text-surface-0">{{ '$' + item.quantidade }}</span>
-                                                                        <div class="flex flex-row-reverse md:flex-row gap-2">
-                                                                                <p-button icon="pi pi-heart" [outlined]="true" />
-                                                                        </div>
+                                                                     <span class="text-xl font-semibold text-surface-900 dark:text-surface-0">{{ item.quantidade }}</span>                                                                                                                                          
                                                                 </div>
                                                         </div>
                                                 </div>
