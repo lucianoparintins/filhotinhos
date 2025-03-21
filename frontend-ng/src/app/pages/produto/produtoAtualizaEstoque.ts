@@ -4,6 +4,7 @@ import { ToastModule } from "primeng/toast";
 import { MessageService } from "primeng/api";
 import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
+import { ProdutoModel } from './produto.model'
 
 @Component({
     selector: "app-produto-atualiza-estoque",
@@ -45,7 +46,7 @@ import { ButtonModule } from 'primeng/button';
     `,
 })
 export class ProdutoAtualizaEstoque { 
-    public produtos: Produto[] = [];
+    public produtos: ProdutoModel[] = [];
     public titulo: string = 'Atualizar Estoque';
 
     constructor(private messageService: MessageService) {}
@@ -53,19 +54,15 @@ export class ProdutoAtualizaEstoque {
     ngOnInit() {  
         setTimeout(() => {
             this.produtos = [
-                { id: 1, nome: 'Produto 1', quantidade: 10 },
-                { id: 2, nome: 'Produto 2', quantidade: 20 },
-                { id: 3, nome: 'Produto 3', quantidade: 30 },
-                { id: 4, nome: 'Produto 4', quantidade: 40 },
-                { id: 5, nome: 'Produto 5', quantidade: 50 },
+                { id: 1, nome: 'Produto 1', descricao: '', quantidade: 10, preco: 100 },
+                { id: 2, nome: 'Produto 2', descricao: '', quantidade: 20, preco: 100 },
+                { id: 3, nome: 'Produto 3', descricao: '', quantidade: 30 , preco: 100 },
+                { id: 4, nome: 'Produto 4', descricao: '', quantidade: 40, preco: 100 },
+                { id: 5, nome: 'Produto 5', descricao: '', quantidade: 50, preco: 100 },
+                { id: 6, nome: 'Produto 6', descricao: '', quantidade: 60, preco: 100 },
             ];
             console.log('Produtos carregados:', this.produtos);
         }, 1000); // Simula carregamento assíncrono
     }
 }
 
-export interface Produto {
-    id: number;
-    nome: string;
-    quantidade: number;
-}
